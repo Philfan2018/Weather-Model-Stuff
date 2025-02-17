@@ -2,7 +2,7 @@ import requests
 import datetime as dt
 import numpy as np
 import pandas as pd
-import matplotlib as plt
+import plotly.express as px
 
 def get_mos_data(Station_id, Model):
     MOS_url = f"https://mesonet.agron.iastate.edu/api/1/mos.json?station={Station_id}&model={Model}"
@@ -35,6 +35,7 @@ Temp_forecast_time = np.array([Temp, forecast_time])
 
 Forecast_time_datetime = pd.to_datetime(forecast_time)
 
-fig, ax = plt.subplots()
-ax.plot(Forecast_time_datetime, Temp)
-plt.show()
+fig = px.line(x=Forecast_time_datetime, y=Temp, 
+              title='Temperature Forecast',
+              labels={'x': 'Forecast Time', 'y': 'Temperature'})
+fig.show()
