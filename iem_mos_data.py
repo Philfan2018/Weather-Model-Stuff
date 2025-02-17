@@ -13,6 +13,8 @@ def get_mos_data(Station_id, Model):
     else:
       	print(f"Something went wrong! {response.status_code}")
 
+Raw_mos_data = get_mos_data("KUNV", "NBS")
+
 for item in Raw_mos_data['data']:
     Temp = item["tmp"]
     Forecast_time = item["ftime"]
